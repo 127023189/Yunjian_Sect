@@ -1,6 +1,7 @@
 package com.yunjian.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yunjian.dto.LoginFormDTO;
 import com.yunjian.dto.Result;
 import com.yunjian.entity.User;
 
@@ -24,4 +25,12 @@ public interface IUserService extends IService<User> {
      * @return
      */
     Result sendCode(String phone, HttpSession session);
+
+    /**
+     * 登录功能
+     * @param loginForm
+     * @param session
+     * @return
+     */
+    Result login(LoginFormDTO loginForm, HttpSession session);
 }
