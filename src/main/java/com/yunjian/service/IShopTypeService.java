@@ -1,5 +1,6 @@
 package com.yunjian.service;
 
+import com.yunjian.dto.Result;
 import com.yunjian.entity.ShopType;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -13,4 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IShopTypeService extends IService<ShopType> {
 
+    /**
+     * 查询列表
+     * @return
+     */
+    Result queryList();
 }
