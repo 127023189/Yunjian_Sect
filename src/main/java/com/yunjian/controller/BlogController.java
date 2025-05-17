@@ -80,4 +80,14 @@ public class BlogController {
         });
         return Result.ok(records);
     }
+
+    /**
+     * 根据id查询博文
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result queryBlogById(@PathVariable("id") Long id) {
+        return blogService.queryBlogById(id);
+    }
 }
