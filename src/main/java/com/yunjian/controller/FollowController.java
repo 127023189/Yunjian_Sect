@@ -1,9 +1,11 @@
 package com.yunjian.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.yunjian.dto.Result;
+import com.yunjian.service.IFollowService;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -17,4 +19,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/follow")
 public class FollowController {
 
+    @Resource
+    private IFollowService followService;
+
+    /**
+     * 关注
+     * @param id
+     * @param isFollow
+     * @return
+     */
+    @PutMapping("/{id}/{isFollow}")
+    public Result follow(@PathVariable("id") Long id,
+                         @PathVariable("isFollow") Boolean isFollow) {
+        return followService.follow(id, isFollow);
+    }
+
+    /**
+     * 取消关注
+     * @param id
+     * @return
+     */
+    @GetMapping("/or/not/{id}")
+    public Result isFollow(@PathVariable("id") Long id) {
+        return followService.isFollow(id);
+    }
+
+    @GetMapping("/common/{id}")
+    public Result commonFollow(@PathVariable("id") Long id) {
+        return followService.commonFollow(id);
+    }
 }

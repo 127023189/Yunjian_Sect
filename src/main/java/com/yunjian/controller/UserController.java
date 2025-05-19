@@ -1,9 +1,11 @@
 package com.yunjian.controller;
 
 
+import cn.hutool.core.bean.BeanUtil;
 import com.yunjian.dto.LoginFormDTO;
 import com.yunjian.dto.Result;
 import com.yunjian.dto.UserDTO;
+import com.yunjian.entity.User;
 import com.yunjian.entity.UserInfo;
 import com.yunjian.service.IUserInfoService;
 import com.yunjian.service.IUserService;
@@ -79,5 +81,17 @@ public class UserController {
         info.setUpdateTime(null);
         // 返回
         return Result.ok(info);
+    }
+
+    @GetMapping("/{id}")
+    public Result queryUserById(@PathVariable("id") Long userId){
+        // 查询详情
+        User user = userService.getById(userId);
+        if (user == null) {
+            return Result.ok();
+        }
+        UserDTO userDTO = BeanUtil.copyProperties(user, UserDTO.class);
+        // 返回
+        return Result.ok(userDTO);
     }
 }
